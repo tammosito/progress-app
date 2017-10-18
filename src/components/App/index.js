@@ -1,20 +1,38 @@
-import React, { Component } from 'react';
-import logo from '../../assets/logo.png';
+import React from 'react';
+import Button from 'material-ui/Button';
+import 'typeface-roboto';
+import { withStyles } from 'material-ui/styles';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Activities from "../Activities";
 
-class App extends Component {
-  render() {
+const styles = theme => ({
+  root: {
+    width: '100%',
+  },
+});
+
+const App = props => {
+  const { classes } = props;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className={classes.root}>
+      <AppBar position="static" color="default">
+        <Toolbar>
+          <Typography type="title" color="inherit">
+            Progress
+          </Typography>
+        </Toolbar>
+      </AppBar>
+        <div>
+          <Button>
+            Add Activity
+          </Button>
+          <Activities/>
+        </div>
       </div>
     );
   }
-}
 
-export default App;
+export default withStyles(styles, { withTheme: true })(App);

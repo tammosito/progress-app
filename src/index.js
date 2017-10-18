@@ -11,10 +11,12 @@ const initialState = {
 		{
 			title: "Joggen",
 			unit: "km",
+			id: 1,
 			items: [
 				{
 					timestamp: 1508350310411,
-					value: 1337
+					value: 1337,
+					id: 1
 				}
 			]
 		}
