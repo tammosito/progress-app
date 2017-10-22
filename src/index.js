@@ -9,13 +9,13 @@ import registerServiceWorker from "./registerServiceWorker";
 const initialState = {
 	activities: [
 		{
-			title: "Joggen",
+			title: "Jogging",
 			unit: "km",
 			id: 1,
 			items: [
 				{
 					timestamp: 1508350310411,
-					value: 1337,
+					value: 6,
 					id: 1
 				}
 			]

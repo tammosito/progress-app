@@ -1,16 +1,17 @@
 import * as actions from "../actions";
 
-const reducer = (state = {}, action) => {
+const reducer = (state = [], action) => {
 	switch (action.type) {
 		case actions.ADD_ACTIVITY:
-			console.log(state)
-			return {
+			return [
 				...state,
-				activities: state.activities.concat([{
-					id: action.playload.id,
-					title: action.payload.title
-				}])
-			};
+				{
+					id: Date.now(),
+					title: action.payload.title,
+					unit: action.payload.unit,
+					items: []
+				}
+			]
 		case actions.ADD_ACTIVITY_ITEM:
 			return state;
 		default:

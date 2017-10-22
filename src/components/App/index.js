@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "material-ui/Button";
 import "typeface-roboto";
 import { withStyles } from "material-ui/styles";
 import AppBar from "material-ui/AppBar";
@@ -25,10 +24,7 @@ const App = props => {
 					</Typography>
 				</Toolbar>
 			</AppBar>
-			<div>
-				<Button>Add Activity</Button>
-				<Activities />
-			</div>
+			<Activities />
 		</div>
 	);
 };
