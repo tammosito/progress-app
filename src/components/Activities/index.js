@@ -4,10 +4,12 @@ import ListSubheader from "material-ui/List/ListSubheader";
 import List, { ListItem, ListItemText } from "material-ui/List";
 import Avatar from "material-ui/Avatar";
 import * as actions from "../../actions";
+import AddActivity from "../AddActivity";
 
 const Activities = ({ activities, addActivity }) => {
 	return (
 		<List>
+			<AddActivity addActivity={addActivity} />
 			<ListSubheader disableSticky onClick={() => addActivity("Lose weight", "kg")}>
 				Your Progress
 			</ListSubheader>

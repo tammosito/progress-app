@@ -8,7 +8,7 @@ export const addActivity = (title, unit) => ({
 });
 
 export const ADD_ACTIVITY_ITEM = "ADD_ACTIVITY_ITEM";
-export const addActivityItem = (date, id) => ({
+export const addActivityItem = (id, value, date) => ({
 	type: ADD_ACTIVITY_ITEM,
 	payload: {
 		id,
