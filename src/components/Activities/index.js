@@ -5,6 +5,7 @@ import List, { ListItem, ListItemText } from "material-ui/List";
 import Avatar from "material-ui/Avatar";
 import * as actions from "../../actions";
 import AddActivity from "../AddActivity";
+import toMaterialStyle from "material-color-hash"
 
 const Activities = ({ activities, addActivity }) => {
 	return (
@@ -16,7 +17,7 @@ const Activities = ({ activities, addActivity }) => {
 			{activities.map(activity => {
 				return (
 					<ListItem button key={activity.id}>
-						<Avatar>{activity.title.slice(0, 1)}</Avatar>
+						<Avatar style={toMaterialStyle(activity.title)}>{activity.title.slice(0, 1)}</Avatar>
 						<ListItemText
 							primary={activity.title}
 							secondary="Last activity: 4 hours ago"
