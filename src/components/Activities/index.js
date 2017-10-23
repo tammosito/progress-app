@@ -5,19 +5,25 @@ import List, { ListItem, ListItemText } from "material-ui/List";
 import Avatar from "material-ui/Avatar";
 import * as actions from "../../actions";
 import AddActivity from "../AddActivity";
-import toMaterialStyle from "material-color-hash"
+import toMaterialStyle from "material-color-hash";
+import { Link } from "react-router-dom";
 
 const Activities = ({ activities, addActivity }) => {
 	return (
 		<List>
 			<AddActivity addActivity={addActivity} />
-			<ListSubheader disableSticky onClick={() => addActivity("Lose weight", "kg")}>
-				Your Progress
-			</ListSubheader>
+			<ListSubheader disableSticky>Your Progress</ListSubheader>
 			{activities.map(activity => {
 				return (
-					<ListItem button key={activity.id}>
-						<Avatar style={toMaterialStyle(activity.title)}>{activity.title.slice(0, 1)}</Avatar>
+					<ListItem
+						button
+						component={Link}
+						to={`/detail/${activity.id}`}
+						key={activity.id}
+					>
+						<Avatar style={toMaterialStyle(activity.title)}>
+							{activity.title.slice(0, 1)}
+						</Avatar>
 						<ListItemText
 							primary={activity.title}
 							secondary="Last activity: 4 hours ago"

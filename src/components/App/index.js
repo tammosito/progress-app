@@ -8,7 +8,8 @@ import Activities from "../Activities";
 
 const styles = theme => ({
 	root: {
-		width: "100%"
+		width: "100%",
+		backgroundColor: "#f7f7f7",
 	}
 });
 
@@ -17,10 +18,10 @@ const App = props => {
 
 	return (
 		<div className={classes.root}>
-			<AppBar position="static">
+			<AppBar position="static" color="inherit">
 				<Toolbar>
 					<Typography type="title" color="inherit">
-						Progress
+						TinyProgress
 					</Typography>
 				</Toolbar>
 			</AppBar>

@@ -1,6 +1,6 @@
 import * as actions from "../actions";
 
-const reducer = (state = [], action) => {
+const activities = (state = [], action) => {
 	switch (action.type) {
 		case actions.ADD_ACTIVITY:
 			return [
@@ -19,4 +19,4 @@ const reducer = (state = [], action) => {
 	}
 };
 
-export default reducer;
+export default activities;

@@ -1,6 +1,6 @@
 {
   "short_name": "Progress",
-  "name": "ProgressApp",
+  "name": "TinyProgress",
   "icons": [
     {
       "src": "favicon.png",
