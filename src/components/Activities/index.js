@@ -10,14 +10,12 @@ import DeleteIcon from "material-ui-icons/Delete";
 import IconButton from "material-ui/IconButton";
 import Avatar from "material-ui/Avatar";
 import * as actions from "../../actions";
-import AddActivity from "../AddActivity";
 import toMaterialStyle from "material-color-hash";
 import { Link } from "react-router-dom";
 
 const Activities = ({ activities, addActivity, removeActivity }) => {
 	return (
 		<List>
-			<AddActivity addActivity={addActivity} />
 			<ListSubheader disableSticky>Your Progress</ListSubheader>
 			{activities.map(activity => {
 				return (

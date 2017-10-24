@@ -1,18 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import {persistStore, autoRehydrate} from 'redux-persist'
+import { persistStore, autoRehydrate } from "redux-persist";
 import createHistory from "history/createBrowserHistory";
 import { Route } from "react-router";
 import {
 	ConnectedRouter,
 	routerReducer,
-	routerMiddleware,
+	routerMiddleware
 } from "react-router-redux";
 import { Provider } from "react-redux";
 import activitiesReducers from "./reducers";
 import App from "./components/App";
-import ActivityDetail from "./components/ActivityDetail"
+import ActivityDetail from "./components/ActivityDetail";
+import styled from "styled-components";
 import registerServiceWorker from "./registerServiceWorker";
 
 const initialState = {
@@ -50,15 +51,22 @@ const store = createStore(
 	composeEnhancers(applyMiddleware(...middleware), autoRehydrate())
 );
 
-persistStore(store)
+persistStore(store);
+
+const AppContainer = styled.div`
+	height: 100%;
+	width: 100%;
+	display: flex;
+	overflow: scroll;
+`;
 
 ReactDOM.render(
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
-			<div>
+			<AppContainer>
 				<Route exact path="/" component={App} />
-				<Route path="/detail/:id" component={ActivityDetail}></Route>
-			</div>
+				<Route path="/detail/:id" component={ActivityDetail} />
+			</AppContainer>
 		</ConnectedRouter>
 	</Provider>,
 	document.getElementById("root")

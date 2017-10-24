@@ -7,6 +7,7 @@ import Dialog, {
 	DialogContentText,
 	DialogTitle
 } from "material-ui/Dialog";
+import TouchAppIcon from "material-ui-icons/TouchApp";
 
 export default class AddActivityDialog extends Component {
 	constructor(props) {
@@ -44,14 +45,15 @@ export default class AddActivityDialog extends Component {
 	render() {
 		return (
 			<div>
-				<Button onClick={this.handleClickOpen}>
-					Add something to work on
+				<Button color="contrast" onClick={this.handleClickOpen}>
+					<TouchAppIcon />
+					Add Activity
 				</Button>
 				<Dialog
 					open={this.state.open}
 					onRequestClose={this.handleRequestClose}
 				>
-					<DialogTitle>Add something to work on</DialogTitle>
+					<DialogTitle>Add Activity</DialogTitle>
 					<DialogContent>
 						<DialogContentText>
 							Add something to work on
