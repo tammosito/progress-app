@@ -12,6 +12,8 @@ const activities = (state = [], action) => {
 					items: []
 				}
 			]
+		case actions.REMOVE_ACTIVITY:
+			return state.filter(activity => activity.id !== action.payload.id)
 		case actions.ADD_ACTIVITY_ITEM:
 			return state;
 		default:
