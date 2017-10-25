@@ -25,13 +25,7 @@ const initialState = {
 			title: "Jogging",
 			unit: "km",
 			id: 1,
-			items: [
-				{
-					timestamp: moment().valueOf(),
-					value: 6,
-					id: 1
-				}
-			]
+			items: []
 		}
 	]
 };
