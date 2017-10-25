@@ -3,6 +3,7 @@ import find from "ramda/src/find";
 import prepend from "ramda/src/prepend";
 import append from "ramda/src/append";
 import propEq from "ramda/src/propEq";
+import moment from "moment"
 
 const getNewActivities = (activityId, value, unit, itemId, date, state) => {
 	const activity = find(propEq("id", activityId), state);
@@ -17,7 +18,7 @@ const activities = (state = [], action) => {
 	switch (action.type) {
 		case actions.ADD_ACTIVITY:
 			return prepend({
-					id: Date.now(),
+					id: moment().valueOf(),
 					title: action.payload.title,
 					unit: action.payload.unit,
 					items: []

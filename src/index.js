@@ -16,6 +16,8 @@ import ActivityDetail from "./components/ActivityDetail";
 import styled from "styled-components";
 import registerServiceWorker from "./registerServiceWorker";
 import "typeface-roboto";
+import moment from "moment";
+moment.locale('de');
 
 const initialState = {
 	activities: [
@@ -25,7 +27,7 @@ const initialState = {
 			id: 1,
 			items: [
 				{
-					timestamp: 1508350310411,
+					timestamp: moment().valueOf(),
 					value: 6,
 					id: 1
 				}

@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import head from "ramda/src/head";
+import prop from "ramda/src/prop";
 import ListSubheader from "material-ui/List/ListSubheader";
 import List, {
 	ListItem,
@@ -12,12 +14,16 @@ import Avatar from "material-ui/Avatar";
 import * as actions from "../../actions";
 import toMaterialStyle from "material-color-hash";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 const Activities = ({ activities, addActivity, removeActivity }) => {
 	return (
 		<List>
 			<ListSubheader disableSticky>Your Progress</ListSubheader>
 			{activities.map(activity => {
+				const timeAgo = prop("date", head(activity.items)) || null;
+				const timeAgoText = moment(timeAgo).fromNow() || "Add events to start"
+				
 				return (
 					<ListItem
 						button
@@ -30,11 +36,13 @@ const Activities = ({ activities, addActivity, removeActivity }) => {
 						</Avatar>
 						<ListItemText
 							primary={activity.title}
-							secondary="Last activity: 4 hours ago"
+							secondary={timeAgoText}
 						/>
 						<ListItemSecondaryAction>
 							<IconButton aria-label="Delete">
-								<DeleteIcon onClick={() => removeActivity(activity.id)} />
+								<DeleteIcon
+									onClick={() => removeActivity(activity.id)}
+								/>
 							</IconButton>
 						</ListItemSecondaryAction>
 					</ListItem>

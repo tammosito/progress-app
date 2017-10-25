@@ -1,3 +1,5 @@
+import moment from "moment"
+
 export const ADD_ACTIVITY = "ADD_ACTIVITY";
 export const addActivity = (title, unit) => ({
 	type: ADD_ACTIVITY,
@@ -22,7 +24,7 @@ export const addActivityItem =  (activityId, value, unit) => ({
 		activityId,
 		value,
 		unit,
-		itemId: Date.now(),
-		date: Date.now(),
+		itemId: moment().valueOf() ,
+		date: moment().valueOf() ,
 	}
 });
