@@ -1,15 +1,16 @@
 import React from "react";
 import { LineChart, Line, ResponsiveContainer } from "recharts";
+import reverse from "ramda/src/reverse";
 
 const ProgessChart = ({ data }) => {
-	const myData = data.reverse().map(item => ({
+	const myData = data.map(item => ({
 		name: item.itemId,
 		value: Number(item.value)
 	}));
 
 	return (
 		<ResponsiveContainer height={100}>
-			<LineChart data={myData}>
+			<LineChart data={reverse(myData)}>
 				<Line
 					type="monotone"
 					dataKey="value"

@@ -1,7 +1,6 @@
 import * as actions from "../actions";
 import find from "ramda/src/find";
 import prepend from "ramda/src/prepend";
-import append from "ramda/src/append";
 import propEq from "ramda/src/propEq";
 import moment from "moment"
 
@@ -26,7 +25,7 @@ const activities = (state = [], action) => {
 		case actions.REMOVE_ACTIVITY:
 			return state.filter(activity => activity.id !== action.payload.id);
 		case actions.ADD_ACTIVITY_ITEM:
-			return append(
+			return prepend(
 				getNewActivities(
 					action.payload.activityId,
 					action.payload.value,

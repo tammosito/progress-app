@@ -22,8 +22,10 @@ const Activities = ({ activities, addActivity, removeActivity }) => {
 			<ListSubheader disableSticky>Your Progress</ListSubheader>
 			{activities.map(activity => {
 				const timeAgo = prop("date", head(activity.items)) || null;
-				const timeAgoText = moment(timeAgo).fromNow() || "Add events to start"
-				
+				const timeAgoText = timeAgo
+					? moment(timeAgo).fromNow()
+					: "Add events to start";
+
 				return (
 					<ListItem
 						button
