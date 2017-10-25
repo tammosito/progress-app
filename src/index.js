@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { persistStore, autoRehydrate } from "redux-persist";
@@ -15,6 +15,7 @@ import App from "./components/App";
 import ActivityDetail from "./components/ActivityDetail";
 import styled from "styled-components";
 import registerServiceWorker from "./registerServiceWorker";
+import "typeface-roboto";
 
 const initialState = {
 	activities: [
@@ -51,24 +52,40 @@ const store = createStore(
 	composeEnhancers(applyMiddleware(...middleware), autoRehydrate())
 );
 
-persistStore(store);
-
-const AppContainer = styled.div`
+const RootContainer = styled.div`
 	height: 100%;
 	width: 100%;
 	display: flex;
-	overflow: scroll;
 `;
 
-ReactDOM.render(
-	<Provider store={store}>
-		<ConnectedRouter history={history}>
-			<AppContainer>
-				<Route exact path="/" component={App} />
-				<Route path="/detail/:id" component={ActivityDetail} />
-			</AppContainer>
-		</ConnectedRouter>
-	</Provider>,
-	document.getElementById("root")
-);
+class RootApp extends Component {
+	constructor() {
+		super();
+		this.state = { rehydrated: false };
+	}
+	componentDidMount() {
+		// begin periodically persisting the store
+		// Do not persist navigation state and forms
+		persistStore(store, {}, () => {
+			this.setState({ rehydrated: true });
+		});
+	}
+	render() {
+		if (!this.state.rehydrated) {
+			return <div></div>;
+		}
+		return (
+			<Provider store={store}>
+				<ConnectedRouter history={history}>
+					<RootContainer>
+						<Route exact path="/" component={App} />
+						<Route path="/detail/:id" component={ActivityDetail} />
+					</RootContainer>
+				</ConnectedRouter>
+			</Provider>
+		);
+	}
+}
+
+ReactDOM.render(<RootApp />, document.getElementById("root"));
 registerServiceWorker();
