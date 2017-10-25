@@ -7,7 +7,7 @@ import Dialog, {
 	DialogContentText,
 	DialogTitle
 } from "material-ui/Dialog";
-import TouchAppIcon from "material-ui-icons/TouchApp";
+import TouchAppIcon from "material-ui-icons/FitnessCenter";
 
 export default class AddItemDialog extends Component {
 	constructor(props) {

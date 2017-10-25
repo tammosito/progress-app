@@ -10,8 +10,9 @@ import List, { ListItem, ListItemText } from "material-ui/List";
 import ProgessChart from "../ProgessChart";
 import * as actions from "../../actions";
 
-const ActivityDetail = ({ match, activity, addActivityItem }) => (
-	<AppContainer>
+const ActivityDetail = ({ match, activity, addActivityItem }) => {
+	console.log(activity.items.length, activity.items)
+	return (<AppContainer>
 		<PageWrapper>
 			<AppBar
 				title="TinyProgress"
@@ -24,7 +25,7 @@ const ActivityDetail = ({ match, activity, addActivityItem }) => (
 				backbutton
 			/>
 			<List>
-				<ProgessChart data={activity.items} />
+				{ (activity.items.length > 1) && <ProgessChart data={activity.items} />}
 				<ListSubheader disableSticky>
 					Your Progress for <strong>{activity.title}</strong>
 				</ListSubheader>
@@ -38,8 +39,8 @@ const ActivityDetail = ({ match, activity, addActivityItem }) => (
 				))}
 			</List>
 		</PageWrapper>
-	</AppContainer>
-);
+	</AppContainer>)
+};
 
 const props = (state, props) => {
 	return {
