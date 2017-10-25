@@ -5,6 +5,11 @@ import propEq from "ramda/src/propEq";
 import { AppContainer, PageWrapper } from "../Layout";
 import AppBar from "../AppBar";
 import AddItem from "../AddItem";
+import ListSubheader from "material-ui/List/ListSubheader";
+import List, {
+	ListItem,
+	ListItemText
+} from "material-ui/List";
 import * as actions from "../../actions";
 
 const ActivityDetail = ({ match, activity, addActivityItem }) => (
@@ -13,15 +18,21 @@ const ActivityDetail = ({ match, activity, addActivityItem }) => (
 			<AppBar
 				title="TinyProgress"
 				action={
-					<AddItem addActivityItem={addActivityItem(activity.id)} />
+					<AddItem addActivityItem={addActivityItem(activity.id)} unit={activity.unit} />
 				}
 				backbutton
 			/>
-			detail id: {match.params.id} <br />
-			{activity.title}
-			{activity.items.map(item => (
-				<div key={item.itemId}>{item.value}</div>
-			))}
+			<List>
+				<ListSubheader disableSticky>Your Progress for <strong>{activity.title}</strong></ListSubheader>
+				{activity.items.map(item => (
+					<ListItem key={item.itemId}>
+						<ListItemText
+							primary={`${item.value} ${item.unit}`}
+							secondary={item.date}
+						/>
+					</ListItem>
+				))}
+			</List>
 		</PageWrapper>
 	</AppContainer>
 );
@@ -37,8 +48,8 @@ const props = (state, props) => {
 
 const mappedActions = dispatch => {
 	return {
-		addActivityItem: activityId => (value, date) => {
-			dispatch(actions.addActivityItem(activityId, value, date));
+		addActivityItem: activityId => (value, unit) => {
+			dispatch(actions.addActivityItem(activityId, value, unit));
 		}
 	};
 };

@@ -71,7 +71,7 @@ export default class AddItemDialog extends Component {
 						<TextField
 							id="unit"
 							margin="dense"
-							placeholder="kg"
+							placeholder={this.state.unit}
 							
 							fullWidth
 							disabled
