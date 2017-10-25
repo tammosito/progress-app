@@ -6,10 +6,8 @@ import { AppContainer, PageWrapper } from "../Layout";
 import AppBar from "../AppBar";
 import AddItem from "../AddItem";
 import ListSubheader from "material-ui/List/ListSubheader";
-import List, {
-	ListItem,
-	ListItemText
-} from "material-ui/List";
+import List, { ListItem, ListItemText } from "material-ui/List";
+import ProgessChart from "../ProgessChart";
 import * as actions from "../../actions";
 
 const ActivityDetail = ({ match, activity, addActivityItem }) => (
@@ -18,12 +16,18 @@ const ActivityDetail = ({ match, activity, addActivityItem }) => (
 			<AppBar
 				title="TinyProgress"
 				action={
-					<AddItem addActivityItem={addActivityItem(activity.id)} unit={activity.unit} />
+					<AddItem
+						addActivityItem={addActivityItem(activity.id)}
+						unit={activity.unit}
+					/>
 				}
 				backbutton
 			/>
 			<List>
-				<ListSubheader disableSticky>Your Progress for <strong>{activity.title}</strong></ListSubheader>
+				<ProgessChart data={activity.items} />
+				<ListSubheader disableSticky>
+					Your Progress for <strong>{activity.title}</strong>
+				</ListSubheader>
 				{activity.items.map(item => (
 					<ListItem key={item.itemId}>
 						<ListItemText
