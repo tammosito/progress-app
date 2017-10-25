@@ -16,11 +16,13 @@ export const removeActivity = (id) => ({
 });
 
 export const ADD_ACTIVITY_ITEM = "ADD_ACTIVITY_ITEM";
-export const addActivityItem = (id, value, date) => ({
+export const addActivityItem =  (activityId, value, unit) => ({
 	type: ADD_ACTIVITY_ITEM,
 	payload: {
-		id,
+		activityId,
 		value,
-		date
+		unit,
+		itemId: Date.now(),
+		date: Date.now(),
 	}
 });

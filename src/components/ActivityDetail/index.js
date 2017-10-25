@@ -3,12 +3,25 @@ import { connect } from "react-redux";
 import find from "ramda/src/find";
 import propEq from "ramda/src/propEq";
 import { AppContainer, PageWrapper } from "../Layout";
+import AppBar from "../AppBar";
+import AddItem from "../AddItem";
+import * as actions from "../../actions";
 
-const ActivityDetail = ({ match, activity }) => (
+const ActivityDetail = ({ match, activity, addActivityItem }) => (
 	<AppContainer>
 		<PageWrapper>
+			<AppBar
+				title="TinyProgress"
+				action={
+					<AddItem addActivityItem={addActivityItem(activity.id)} />
+				}
+				backbutton
+			/>
 			detail id: {match.params.id} <br />
 			{activity.title}
+			{activity.items.map(item => (
+				<div key={item.itemId}>{item.value}</div>
+			))}
 		</PageWrapper>
 	</AppContainer>
 );
@@ -22,8 +35,11 @@ const props = (state, props) => {
 	};
 };
 
-const actions = dispatch => {
-	return {};
+const mappedActions = dispatch => {
+	return {
+		addActivityItem: activityId => (value, date) => {
+			dispatch(actions.addActivityItem(activityId, value, date));
+		}
+	};
 };
-
-export default connect(props, actions)(ActivityDetail);
+export default connect(props, mappedActions)(ActivityDetail);
