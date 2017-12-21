@@ -41,7 +41,7 @@ const Activities = ({ activities, addActivity, removeActivity }) => {
 							secondary={timeAgoText}
 						/>
 						<ListItemSecondaryAction>
-							<IconButton aria-label="Delete">
+							<IconButton aria-label="Delete" style={{color: "rgba(255, 255, 255, 0.9)"}}>
 								<DeleteIcon
 									onClick={() => removeActivity(activity.id)}
 								/>

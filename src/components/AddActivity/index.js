@@ -51,7 +51,7 @@ export default class AddActivityDialog extends Component {
 				</Button>
 				<Dialog
 					open={this.state.open}
-					onRequestClose={this.handleRequestClose}
+					onClose={this.handleRequestClose}
 				>
 					<DialogTitle>Add Activity</DialogTitle>
 					<DialogContent>

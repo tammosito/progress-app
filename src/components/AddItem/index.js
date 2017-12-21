@@ -51,7 +51,7 @@ export default class AddItemDialog extends Component {
 				</Button>
 				<Dialog
 					open={this.state.open}
-					onRequestClose={this.handleRequestClose}
+					onClose={this.handleRequestClose}
 				>
 					<DialogTitle>Add Item</DialogTitle>
 					<DialogContent>

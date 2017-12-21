@@ -10,6 +10,7 @@ import {
 	routerMiddleware
 } from "react-router-redux";
 import { Provider } from "react-redux";
+import { MuiThemeProvider, createMuiTheme } from "material-ui/styles";
 import activitiesReducers from "./reducers";
 import App from "./components/App";
 import ActivityDetail from "./components/ActivityDetail";
@@ -17,7 +18,7 @@ import styled from "styled-components";
 import registerServiceWorker from "./registerServiceWorker";
 import "typeface-roboto";
 import moment from "moment";
-moment.locale('de');
+moment.locale("de");
 
 const initialState = {
 	activities: [
@@ -48,6 +49,24 @@ const store = createStore(
 	composeEnhancers(applyMiddleware(...middleware), autoRehydrate())
 );
 
+const theme = createMuiTheme({
+	palette: {
+		type: "light" // Switching the dark mode on is a single property value change.
+	},
+	overrides: {
+		MuiListItemText: {
+			text: {
+				color: "rgba(255, 255, 255, 0.95)"
+			}
+		},
+		MuiListSubheader: {
+			root: {
+				color: "rgba(255, 255, 255, 0.95)"
+			}
+		}
+	}
+});
+
 const RootContainer = styled.div`
 	height: 100%;
 	width: 100%;
@@ -68,17 +87,22 @@ class RootApp extends Component {
 	}
 	render() {
 		if (!this.state.rehydrated) {
-			return <div></div>;
+			return <div />;
 		}
 		return (
-			<Provider store={store}>
-				<ConnectedRouter history={history}>
-					<RootContainer>
-						<Route exact path="/" component={App} />
-						<Route path="/detail/:id" component={ActivityDetail} />
-					</RootContainer>
-				</ConnectedRouter>
-			</Provider>
+			<MuiThemeProvider theme={theme}>
+				<Provider store={store}>
+					<ConnectedRouter history={history}>
+						<RootContainer>
+							<Route exact path="/" component={App} />
+							<Route
+								path="/detail/:id"
+								component={ActivityDetail}
+							/>
+						</RootContainer>
+					</ConnectedRouter>
+				</Provider>
+			</MuiThemeProvider>
 		);
 	}
 }
